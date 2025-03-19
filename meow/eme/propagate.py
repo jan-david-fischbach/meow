@@ -120,6 +120,9 @@ def plot_fields(modes, cells, forwards, backwards, y, z, lim=1):
         Ex = np.array(0 + 0j)
         i_min = np.argmax(z >= cell.z_min)
         i_max = np.argmax(z > cell.z_max)
+        if i_min == i_max == 0:
+            continue
+
         if i_max == 0:
             z_ = z[i_min:]
         else:

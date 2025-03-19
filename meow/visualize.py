@@ -20,9 +20,9 @@ except ImportError:
     gf = None
 
 try:
-    from jaxlib.xla_extension import DeviceArray  # fmt: skip # type: ignore
+    import jax
 except ImportError:
-    DeviceArray = None
+    jax = None
 
 
 def _visualize_s_matrix(S, fmt=None, title=None, show=True, phase=False, ax=None):
@@ -271,7 +271,7 @@ def _is_s_matrix(obj: Any):
     return (
         (
             isinstance(obj, np.ndarray)
-            or (DeviceArray is not None and isinstance(obj, DeviceArray))
+            or (jax is not None and isinstance(obj, jax.Array))
         )
         and obj.ndim == 2
         and obj.shape[0] > 1
